@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Présentation de l'Entreprise — Fondation Saint Jean de Dieu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0;
+  --bg2:#eeeae2;
+  --white:#ffffff;
+  --surface:#f0ece3;
+  --border:#d6d0c4;
+  --border2:#c4bdb0;
+  --navy:#1a2744;
+  --navy2:#243359;
+  --blue:#2563a8;
+  --blue2:#1d4f8a;
+  --gold:#a07830;
+  --gold2:#8a6520;
+  --red-cross:#c0392b;
+  --text:#1c1c1c;
+  --text2:#4a4640;
+  --text3:#7a7470;
+  --font:'Inter',sans-serif;
+  --serif:'Lora',serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* HEADER */
+header{background:var(--navy);color:#fff;padding:0;}
+.header-top{background:var(--navy2);padding:.6rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);}
+.header-back{color:rgba(255,255,255,.6);text-decoration:none;font-size:.78rem;font-family:var(--mono);display:flex;align-items:center;gap:.4rem;transition:color .2s;}
+.header-back:hover{color:#fff;}
+.header-tag{font-family:var(--mono);font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.1em;}
+.header-main{padding:3.5rem 2rem 3rem;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center;}
+.header-emblem{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:2.2rem;flex-shrink:0;}
+.header-title{font-family:var(--serif);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;line-height:1.15;margin-bottom:.5rem;}
+.header-subtitle{color:rgba(255,255,255,.55);font-size:.9rem;font-weight:300;margin-bottom:1rem;}
+.header-badges{display:flex;flex-wrap:wrap;gap:.5rem;}
+.hbadge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.7);font-size:.72rem;padding:.28rem .75rem;border-radius:4px;font-family:var(--mono);letter-spacing:.04em;}
+.hbadge.gold{background:rgba(160,120,48,.18);border-color:rgba(160,120,48,.4);color:#d4a855;}
+
+/* NAV TABS */
+.page-nav{background:var(--white);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06);}
+.page-nav-inner{max-width:1080px;margin:0 auto;padding:0 2rem;display:flex;gap:0;overflow-x:auto;}
+.pnav-btn{font-size:.82rem;font-weight:500;color:var(--text3);background:none;border:none;padding:.85rem 1.2rem;cursor:pointer;font-family:var(--font);white-space:nowrap;position:relative;transition:color .2s;border-bottom:2px solid transparent;margin-bottom:-2px;}
+.pnav-btn:hover{color:var(--blue);}
+.pnav-btn.active{color:var(--navy);border-bottom-color:var(--navy);}
+
+/* MAIN */
+main{max-width:1080px;margin:0 auto;padding:3rem 2rem 5rem;}
+
+/* SECTION */
+.page-section{display:none;animation:fadeIn .3s ease;}
+.page-section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* SECTION HEADING */
+.sec-head{margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--border);}
+.sec-eyebrow{font-family:var(--mono);font-size:.68rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;}
+.sec-eyebrow::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--gold);}
+.sec-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--navy);line-height:1.2;}
+.sec-sub{color:var(--text2);font-size:.9rem;margin-top:.4rem;}
+
+/* INTRO BLOCK */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+.intro-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.5rem;}
+.intro-card.navy{background:var(--navy);border-color:var(--navy);}
+.intro-card.navy .ic-label{color:rgba(255,255,255,.5);}
+.intro-card.navy .ic-value{color:#fff;}
+.intro-card.navy .ic-sub{color:rgba(255,255,255,.6);}
+.ic-label{font-family:var(--mono);font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;}
+.ic-value{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:.3rem;}
+.ic-sub{font-size:.8rem;color:var(--text2);}
+
+/* TIMELINE HISTOIRE */
+.histoire-timeline{position:relative;padding-left:2rem;margin:2rem 0;}
+.histoire-timeline::before{content:'';position:absolute;left:.35rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--navy));}
+.ht-item{position:relative;margin-bottom:2rem;padding:1.2rem 1.4rem;background:var(--white);border:1px solid var(--border);border-radius:8px;}
+.ht-item::before{content:'';position:absolute;left:-1.85rem;top:1.3rem;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2.5px solid var(--bg);}
+.ht-year{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;}
+.ht-title{font-weight:600;color:var(--navy);margin-bottom:.3rem;font-size:.92rem;}
+.ht-body{font-size:.85rem;color:var(--text2);}
+.ht-item.highlight{border-left:3px solid var(--navy);border-radius:0 8px 8px 0;}
+.ht-item.highlight .ht-year{color:var(--navy);}
+.ht-item.highlight::before{background:var(--navy);}
+
+/* VALEURS */
+.valeurs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1.5rem 0;}
+.valeur-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.2rem;text-align:center;transition:border-color .2s,transform .2s;}
+.valeur-card:hover{border-color:var(--navy);transform:translateY(-2px);}
+.valeur-icon{font-size:1.8rem;margin-bottom:.6rem;display:block;}
+.valeur-name{font-family:var(--serif);font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.35rem;}
+.valeur-desc{font-size:.78rem;color:var(--text2);}
+
+/* CHIFFRES CLES */
+.chiffres-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin:1.5rem 0;}
+.chiffre-card{background:var(--navy);border-radius:8px;padding:1.4rem 1rem;text-align:center;}
+.chiffre-val{font-family:var(--serif);font-size:2rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.3rem;}
+.chiffre-val span{font-size:1.1rem;color:rgba(255,255,255,.6);}
+.chiffre-label{font-size:.75rem;color:rgba(255,255,255,.55);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;}
+
+/* TABLE */
+.comp-table{width:100%;border-collapse:collapse;font-size:.85rem;margin:1.5rem 0;background:var(--white);border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.comp-table th{text-align:left;padding:.8rem 1rem;background:var(--navy);color:rgba(255,255,255,.85);font-size:.72rem;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;font-weight:500;}
+.comp-table td{padding:.8rem 1rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:var(--surface);}
+.comp-table td:first-child{font-weight:600;color:var(--navy);}
+
+/* SECTEURS */
+.secteurs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin:1.5rem 0;}
+.secteur-card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.secteur-header{padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;}
+.secteur-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.secteur-name{font-family:var(--serif);font-weight:700;font-size:.95rem;color:var(--navy);}
+.secteur-type{font-size:.72rem;color:var(--text3);font-family:var(--mono);}
+.secteur-body{padding:.8rem 1.2rem 1.2rem;font-size:.82rem;color:var(--text2);border-top:1px solid var(--border);}
+
+/* CARTE ETABLISSEMENTS */
+.carte-wrapper{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin:1.5rem 0;}
+.carte-title{font-family:var(--serif);font-weight:700;color:var(--navy);margin-bottom:1rem;font-size:.95rem;}
+.regions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem;}
+.region-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.7rem 1rem;display:flex;align-items:center;gap:.7rem;}
+.region-dot{width:8px;height:8px;border-radius:50%;background:var(--navy);flex-shrink:0;}
+.region-name{font-size:.82rem;font-weight:500;color:var(--text);}
+.region-count{font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-left:auto;}
+
+/* ORDRE VS FONDATION */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0;}
+.compare-card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.compare-head{padding:1rem 1.2rem;border-bottom:1px solid var(--border);}
+.compare-head.gold-head{background:linear-gradient(135deg,#a07830,#8a6520);}
+.compare-head.navy-head{background:var(--navy);}
+.compare-head .ch-title{font-family:var(--serif);font-weight:700;font-size:.95rem;color:#fff;}
+.compare-head .ch-sub{font-size:.72rem;color:rgba(255,255,255,.6);margin-top:.2rem;}
+.compare-body{padding:1rem 1.2rem;}
+.compare-row{display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.7rem;font-size:.82rem;}
+.compare-row:last-child{margin-bottom:0;}
+.cr-label{font-weight:600;color:var(--navy);min-width:90px;flex-shrink:0;font-size:.78rem;}
+.cr-val{color:var(--text2);}
+
+/* SAVOIR */
+.savoir-box{background:var(--navy);border-radius:8px;padding:1.5rem 1.8rem;margin:1.5rem 0;display:flex;gap:1.2rem;align-items:flex-start;}
+.savoir-icon{font-size:1.6rem;flex-shrink:0;margin-top:.1rem;}
+.savoir-label{font-family:var(--mono);font-size:.65rem;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
+.savoir-text{font-family:var(--serif);font-style:italic;color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.65;}
+
+/* QUOTE */
+.quote-block{border-left:3px solid var(--gold);background:var(--white);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 8px 8px 0;}
+.quote-text{font-family:var(--serif);font-style:italic;color:var(--navy2);font-size:.95rem;margin-bottom:.4rem;}
+.quote-src{font-family:var(--mono);font-size:.68rem;color:var(--text3);letter-spacing:.06em;}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:2rem;font-size:.8rem;}
+footer a{color:rgba(255,255,255,.6);text-decoration:none;}
+
+@media(max-width:680px){
+  .header-main,.intro-grid,.compare-grid{grid-template-columns:1fr;}
+  .chiffres-grid{grid-template-columns:repeat(2,1fr);}
+  .page-nav-inner{gap:0;}
+  .pnav-btn{padding:.8rem .9rem;font-size:.76rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <a href="index.html" class="header-back">← Retour au Portfolio E5</a>
+    <span class="header-tag">BTS SIO SISR · Portfolio E5</span>
+  </div>
+  <div class="header-main">
+    <div class="header-emblem">✝️</div>
+    <div>
+      <div class="header-title">Fondation Saint Jean de Dieu</div>
+      <div class="header-subtitle">Présentation institutionnelle — Secteur médico-social · France</div>
+      <div class="header-badges">
+        <span class="hbadge">Reconnue d'Utilité Publique</span>
+        <span class="hbadge">Fondée en 2012</span>
+        <span class="hbadge gold">Ordre Hospitalier depuis 1572</span>
+        <span class="hbadge">50+ pays</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<div class="page-nav">
+  <div class="page-nav-inner">
+    <button class="pnav-btn active" onclick="showSection('histoire')">Histoire & Origines</button>
+    <button class="pnav-btn" onclick="showSection('valeurs')">Valeurs & Mission</button>
+    <button class="pnav-btn" onclick="showSection('chiffres')">Chiffres Clés</button>
+    <button class="pnav-btn" onclick="showSection('etablissements')">Établissements</button>
+    <button class="pnav-btn" onclick="showSection('structure')">Structure & Gouvernance</button>
+  </div>
+</div>
+
+<main>
+
+  <!-- HISTOIRE -->
+  <div class="page-section active" id="section-histoire">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Origines</div>
+      <div class="sec-title">Une histoire de plus de 450 ans</div>
+      <div class="sec-sub">De Saint Jean de Dieu à la Fondation moderne — un héritage de soin et d'hospitalité</div>
+    </div>
+
+    <div class="intro-grid">
+      <div class="intro-card">
+        <div class="ic-label">Fondateur de l'Ordre</div>
+        <div class="ic-value">Saint Jean de Dieu (1495–1550)</div>
+        <div class="ic-sub">Né au Portugal, il dédie sa vie aux malades après une conversion à Grenade, Espagne. Précurseur de l'hôpital moderne.</div>
+      </div>
+      <div class="intro-card navy">
+        <div class="ic-label">Fondation française</div>
+        <div class="ic-value">Créée en 2012</div>
+        <div class="ic-sub">Reconnue d'Utilité Publique, elle prend le relais opérationnel des Frères de l'Ordre en France.</div>
+      </div>
+    </div>
+
+    <div class="histoire-timeline">
+      <div class="ht-item">
+        <div class="ht-year">1495</div>
+        <div class="ht-title">Naissance de Jean de Dieu au Portugal</div>
+        <div class="ht-body">Né João Cidade à Montemor-o-Novo, il mène une vie d'aventurier (soldat, berger, libraire) avant de connaître une conversion radicale à Grenade en 1537.</div>
+      </div>
+      <div class="ht-item">
+        <div class="ht-year">1537</div>
+        <div class="ht-title">Fondation du premier hôpital à Grenade</div>
+        <div class="ht-body">Après sa conversion, il ouvre à Grenade un lieu d'accueil pour les pauvres et les malades. Innovation majeure : il sépare les malades par pathologie — une approche révolutionnaire pour l'époque.</div>
+      </div>
+      <div class="ht-item">
+        <div class="ht-year">1550</div>
+        <div class="ht-title">Décès et canonisation</div>
+        <div class="ht-body">Jean de Dieu décède en 1550. Il est canonisé en 1690 et proclamé patron des malades, des infirmiers et des hôpitaux.</div>
+      </div>
+      <div class="ht-item highlight">
+        <div class="ht-year">1572</div>
+        <div class="ht-title">Reconnaissance officielle de l'Ordre Hospitalier</div>
+        <div class="ht-body">L'Ordre des Frères Hospitaliers de Saint Jean de Dieu est officiellement reconnu par le Pape Pie V. Présent aujourd'hui dans 50 pays avec environ 400 établissements.</div>
+      </div>
+      <div class="ht-item">
+        <div class="ht-year">XIXe – XXe s.</div>
+        <div class="ht-title">Implantation en France</div>
+        <div class="ht-body">Les Frères de l'Ordre s'implantent progressivement en France et créent des établissements médico-sociaux, notamment dans les secteurs du handicap, de la psychiatrie et du grand âge.</div>
+      </div>
+      <div class="ht-item highlight">
+        <div class="ht-year">2012</div>
+        <div class="ht-title">Création de la Fondation Saint Jean de Dieu</div>
+        <div class="ht-body">L'Ordre Hospitalier crée la Fondation Saint Jean de Dieu, reconnue d'Utilité Publique, pour professionnaliser et pérenniser la gestion des établissements en France. Elle assure la continuité opérationnelle de l'œuvre des Frères.</div>
+      </div>
+    </div>
+
+    <div class="savoir-box">
+      <div class="savoir-icon">💡</div>
+      <div>
+        <div class="savoir-label">Le saviez-vous ?</div>
+        <div class="savoir-text">Saint Jean de Dieu est considéré comme l'un des précurseurs de l'hôpital moderne. Au XVIe siècle, il fut l'un des premiers à séparer les malades par pathologie et à prôner une approche humaine globale — soigner le corps ET l'esprit.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALEURS -->
+  <div class="page-section" id="section-valeurs">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Éthique & Identité</div>
+      <div class="sec-title">Valeurs & Mission</div>
+      <div class="sec-sub">Cinq piliers éthiques hérités de Saint Jean de Dieu, au cœur de chaque établissement</div>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">« L'Hospitalité désigne l'accueil inconditionnel de toute personne souffrante, sans distinction de religion, d'origine ou de condition sociale. »</div>
+      <div class="quote-src">Charte de l'Ordre Hospitalier de Saint Jean de Dieu</div>
+    </div>
+
+    <div class="valeurs-grid">
+      <div class="valeur-card">
+        <span class="valeur-icon">🤝</span>
+        <div class="valeur-name">Hospitalité</div>
+        <div class="valeur-desc">La valeur centrale. Accueil inconditionnel du "prochain" souffrant, sans distinction d'origine ou de religion.</div>
+      </div>
+      <div class="valeur-card">
+        <span class="valeur-icon">🧭</span>
+        <div class="valeur-name">Respect</div>
+        <div class="valeur-desc">Dignité de la personne, de son histoire, de ses droits et de ses choix de vie respectés à chaque instant.</div>
+      </div>
+      <div class="valeur-card">
+        <span class="valeur-icon">⭐</span>
+        <div class="valeur-name">Qualité</div>
+        <div class="valeur-desc">Excellence des soins et des accompagnements. Professionnalisme des équipes et amélioration continue.</div>
+      </div>
+      <div class="valeur-card">
+        <span class="valeur-icon">⚖️</span>
+        <div class="valeur-name">Responsabilité</div>
+        <div class="valeur-desc">Gestion éthique et durable des ressources. Transparence envers les familles, partenaires et financeurs.</div>
+      </div>
+      <div class="valeur-card">
+        <span class="valeur-icon">🕊️</span>
+        <div class="valeur-name">Spiritualité</div>
+        <div class="valeur-desc">Attention portée à la dimension intérieure et au sens de la vie, dans le respect de chaque croyance.</div>
+      </div>
+    </div>
+
+    <div class="sec-head" style="margin-top:2.5rem;">
+      <div class="sec-eyebrow">Champs d'action</div>
+      <div class="sec-title" style="font-size:1.4rem;">Trois secteurs d'intervention en France</div>
+    </div>
+
+    <div class="secteurs-grid">
+      <div class="secteur-card">
+        <div class="secteur-header">
+          <div class="secteur-icon" style="background:#e8f0fb;">♿</div>
+          <div>
+            <div class="secteur-name">Le Handicap</div>
+            <div class="secteur-type">IME · ESAT · MAS · FAM</div>
+          </div>
+        </div>
+        <div class="secteur-body">Accompagnement des enfants et adultes en situation de handicap mental, moteur ou psychique. Inclusion sociale et professionnelle via les ESAT.</div>
+      </div>
+      <div class="secteur-card">
+        <div class="secteur-header">
+          <div class="secteur-icon" style="background:#fef3e8;">🧠</div>
+          <div>
+            <div class="secteur-name">La Psychiatrie</div>
+            <div class="secteur-type">Soins · Réhabilitation psychosociale</div>
+          </div>
+        </div>
+        <div class="secteur-body">Soins psychiatriques et réhabilitation psychosociale. Accompagnement des personnes souffrant de troubles mentaux vers une vie autonome.</div>
+      </div>
+      <div class="secteur-card">
+        <div class="secteur-header">
+          <div class="secteur-icon" style="background:#f0faf4;">👴</div>
+          <div>
+            <div class="secteur-name">Le Grand Âge</div>
+            <div class="secteur-type">EHPAD · Résidences · Soins palliatifs</div>
+          </div>
+        </div>
+        <div class="secteur-body">Prise en charge de la dépendance et de la fin de vie. Accompagnement digne et personnalisé des personnes âgées et de leurs familles.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHIFFRES -->
+  <div class="page-section" id="section-chiffres">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Données</div>
+      <div class="sec-title">Chiffres Clés</div>
+      <div class="sec-sub">L'ampleur de la Fondation en France et de l'Ordre dans le monde</div>
+    </div>
+
+    <div class="sec-head" style="border:none;margin-bottom:.5rem;padding-bottom:0;">
+      <div class="sec-eyebrow" style="color:var(--navy);">France — Fondation Saint Jean de Dieu</div>
+    </div>
+    <div class="chiffres-grid">
+      <div class="chiffre-card"><div class="chiffre-val">40<span>+</span></div><div class="chiffre-label">Établissements</div></div>
+      <div class="chiffre-card"><div class="chiffre-val">4<span>500+</span></div><div class="chiffre-label">Salariés</div></div>
+      <div class="chiffre-card"><div class="chiffre-val">3<span> secteurs</span></div><div class="chiffre-label">Handicap · Psy · Grand âge</div></div>
+      <div class="chiffre-card"><div class="chiffre-val">2012</div><div class="chiffre-label">Année de création RUP</div></div>
+    </div>
+
+    <div class="sec-head" style="border:none;margin:2rem 0 .5rem;padding-bottom:0;">
+      <div class="sec-eyebrow" style="color:var(--gold);">Monde — Ordre Hospitalier de Saint Jean de Dieu</div>
+    </div>
+    <div class="chiffres-grid">
+      <div class="chiffre-card" style="background:var(--gold);"><div class="chiffre-val">50<span>+</span></div><div class="chiffre-label">Pays</div></div>
+      <div class="chiffre-card" style="background:var(--gold);"><div class="chiffre-val">400<span>+</span></div><div class="chiffre-label">Établissements</div></div>
+      <div class="chiffre-card" style="background:var(--gold);"><div class="chiffre-val">450<span>+ ans</span></div><div class="chiffre-label">D'histoire</div></div>
+      <div class="chiffre-card" style="background:var(--gold);"><div class="chiffre-val">1572</div><div class="chiffre-label">Reconnaissance officielle</div></div>
+    </div>
+
+    <div class="savoir-box" style="margin-top:2rem;">
+      <div class="savoir-icon">🏥</div>
+      <div>
+        <div class="savoir-label">Contexte informatique</div>
+        <div class="savoir-text">Cette envergure nationale implique une DSI centralisée gérant des dizaines de sites, des milliers de comptes utilisateurs et des applications métier critiques. C'est dans ce contexte que j'interviens en tant qu'apprenti technicien SISR.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETABLISSEMENTS -->
+  <div class="page-section" id="section-etablissements">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Implantation</div>
+      <div class="sec-title">Répartition Nationale des Établissements</div>
+      <div class="sec-sub">La Fondation est présente dans de nombreuses régions françaises avec des établissements de types variés</div>
+    </div>
+
+    <div class="carte-wrapper">
+      <div class="carte-title">Principales régions d'implantation</div>
+      <div class="regions-grid">
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Île-de-France</span><span class="region-count">Siège social</span></div>
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Auvergne-Rhône-Alpes</span><span class="region-count">Multi-sites</span></div>
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Nouvelle-Aquitaine</span><span class="region-count">Multi-sites</span></div>
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Occitanie</span><span class="region-count">Multi-sites</span></div>
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Bretagne</span><span class="region-count">Multi-sites</span></div>
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Hauts-de-France</span><span class="region-count">Multi-sites</span></div>
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Grand Est</span><span class="region-count">Multi-sites</span></div>
+        <div class="region-item"><div class="region-dot"></div><span class="region-name">Pays de la Loire</span><span class="region-count">Multi-sites</span></div>
+      </div>
+    </div>
+
+    <div class="sec-head" style="border:none;margin:2rem 0 1rem;padding-bottom:0;">
+      <div class="sec-eyebrow">Types d'établissements</div>
+    </div>
+    <table class="comp-table">
+      <thead><tr><th>Type</th><th>Sigle</th><th>Public accueilli</th><th>Secteur</th></tr></thead>
+      <tbody>
+        <tr><td>Établissement d'Hébergement pour Personnes Âgées Dépendantes</td><td style="font-family:var(--mono);font-size:.78rem;">EHPAD</td><td>Personnes âgées dépendantes</td><td>Grand Âge</td></tr>
+        <tr><td>Institut Médico-Éducatif</td><td style="font-family:var(--mono);font-size:.78rem;">IME</td><td>Enfants et adolescents handicapés</td><td>Handicap</td></tr>
+        <tr><td>Établissement et Service d'Aide par le Travail</td><td style="font-family:var(--mono);font-size:.78rem;">ESAT</td><td>Adultes handicapés (travail protégé)</td><td>Handicap</td></tr>
+        <tr><td>Maison d'Accueil Spécialisée</td><td style="font-family:var(--mono);font-size:.78rem;">MAS</td><td>Adultes handicapés lourds</td><td>Handicap</td></tr>
+        <tr><td>Foyer d'Accueil Médicalisé</td><td style="font-family:var(--mono);font-size:.78rem;">FAM</td><td>Adultes polyhandicapés</td><td>Handicap</td></tr>
+        <tr><td>Unité de Soins de Réhabilitation Psychiatrique</td><td style="font-family:var(--mono);font-size:.78rem;">USRP</td><td>Personnes souffrant de troubles mentaux</td><td>Psychiatrie</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote-block">
+      <div class="quote-text">Cette diversité d'établissements implique des environnements informatiques hétérogènes — différentes versions d'OS, d'applications métier, de configurations réseau. C'est précisément l'enjeu de la mission de standardisation et de migration M365 que j'ai menée (SP1).</div>
+      <div class="quote-src">Lien avec les Situations Professionnelles du Portfolio E5</div>
+    </div>
+  </div>
+
+  <!-- STRUCTURE -->
+  <div class="page-section" id="section-structure">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Organisation</div>
+      <div class="sec-title">Structure & Gouvernance</div>
+      <div class="sec-sub">La relation entre l'Ordre Hospitalier et la Fondation moderne</div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-head gold-head">
+          <div class="ch-title">L'Ordre Hospitalier</div>
+          <div class="ch-sub">Depuis 1572 — Gardien du charisme</div>
+        </div>
+        <div class="compare-body">
+          <div class="compare-row"><span class="cr-label">Nature</span><span class="cr-val">Congrégation religieuse composée de Frères</span></div>
+          <div class="compare-row"><span class="cr-label">Rôle</span><span class="cr-val">Gardien du charisme et de la spiritualité de Saint Jean de Dieu</span></div>
+          <div class="compare-row"><span class="cr-label">Ancienneté</span><span class="cr-val">Plus de 450 ans d'existence</span></div>
+          <div class="compare-row"><span class="cr-label">Présence</span><span class="cr-val">50 pays, ~400 établissements dans le monde</span></div>
+          <div class="compare-row"><span class="cr-label">Gouvernance</span><span class="cr-val">Frère Supérieur Général, Chapitres provinciaux</span></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-head navy-head">
+          <div class="ch-title">La Fondation Saint Jean de Dieu</div>
+          <div class="ch-sub">Depuis 2012 — Gestionnaire opérationnel</div>
+        </div>
+        <div class="compare-body">
+          <div class="compare-row"><span class="cr-label">Nature</span><span class="cr-val">Institution Reconnue d'Utilité Publique (RUP)</span></div>
+          <div class="compare-row"><span class="cr-label">Rôle</span><span class="cr-val">Gestion opérationnelle des établissements et projets en France</span></div>
+          <div class="compare-row"><span class="cr-label">Ancienneté</span><span class="cr-val">Créée en 2012 par l'Ordre Hospitalier</span></div>
+          <div class="compare-row"><span class="cr-label">Présence</span><span class="cr-val">40+ établissements en France, 4500+ salariés</span></div>
+          <div class="compare-row"><span class="cr-label">Gouvernance</span><span class="cr-val">Conseil d'Administration (Frères + laïcs), Direction Générale</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-head" style="border:none;margin:2.5rem 0 1rem;padding-bottom:0;">
+      <div class="sec-eyebrow">Comparatif synthétique</div>
+    </div>
+    <table class="comp-table">
+      <thead><tr><th>Caractéristique</th><th>L'Ordre Hospitalier</th><th>La Fondation Saint Jean de Dieu</th></tr></thead>
+      <tbody>
+        <tr><td>Nature</td><td>Congrégation religieuse (Frères)</td><td>Institution reconnue d'utilité publique</td></tr>
+        <tr><td>Rôle</td><td>Gardien du charisme et de la spiritualité</td><td>Gestionnaire des établissements et projets</td></tr>
+        <tr><td>Ancienneté</td><td>Plus de 450 ans</td><td>Créée en 2012</td></tr>
+        <tr><td>Public</td><td>Universel — présence mondiale</td><td>Principalement focalisée sur la France</td></tr>
+        <tr><td>Financement</td><td>Dons, biens de l'Ordre</td><td>Tarification ARS, subventions, mécénat</td></tr>
+      </tbody>
+    </table>
+
+    <div class="savoir-box">
+      <div class="savoir-icon">🖥️</div>
+      <div>
+        <div class="savoir-label">Implications pour la DSI</div>
+        <div class="savoir-text">La Fondation dispose d'une Direction des Systèmes d'Information centralisée qui pilote l'infrastructure IT de l'ensemble des établissements. Mon poste d'apprenti technicien SISR s'inscrit dans cette DSI, intervenant sur l'Active Directory national, les déploiements applicatifs, la sécurité réseau et le support multi-sites.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Présentation institutionnelle — <a href="https://www.fondation-stjeandedieu.org">fondation-stjeanededieu.org</a> · <a href="index.html">Retour au Portfolio E5</a></p>
+  <p style="margin-top:.3rem;font-size:.72rem;">BTS SIO SISR · Apprenti Technicien Systèmes, Réseaux & Support · Fondation Saint Jean de Dieu</p>
+</footer>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.pnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:document.querySelector('.page-nav').offsetTop-10,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
