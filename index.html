@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio E5 — BTS SIO SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #0f1420;
+    --surface: #141928;
+    --surface2: #1a2035;
+    --border: #1e2d4a;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID BACKGROUND ─────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 800px; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: rgba(0,212,255,.1);
+    border: 1px solid rgba(0,212,255,.3);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+    padding: .4rem 1rem;
+    border-radius: 100px;
+    letter-spacing: .05em;
+    margin-bottom: 2rem;
+    animation: fadeDown .6s ease both;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: fadeDown .7s .1s ease both;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    animation: fadeDown .7s .2s ease both;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    justify-content: center;
+    animation: fadeDown .7s .3s ease both;
+  }
+
+  .tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    padding: .3rem .8rem;
+    border-radius: 6px;
+    letter-spacing: .03em;
+  }
+
+  /* ── NAV ──────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,14,26,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: .8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .85rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 500;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ─────────────────────────────────────── */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    color: var(--accent);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 2px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+
+  /* ── SITUATION CARDS ──────────────────────────────── */
+  .situations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+    cursor: pointer;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--accent));
+    border-radius: 16px 16px 0 0;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,212,255,.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(0,212,255,.1);
+  }
+
+  .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    color: var(--text-muted);
+    letter-spacing: .1em;
+    margin-bottom: .8rem;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: .8rem;
+    line-height: 1.35;
+  }
+
+  .card p {
+    font-size: .875rem;
+    color: var(--text-dim);
+    margin-bottom: 1.2rem;
+  }
+
+  .card-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .skill-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem;
+    background: rgba(0,212,255,.08);
+    border: 1px solid rgba(0,212,255,.2);
+    color: var(--accent);
+    padding: .2rem .65rem;
+    border-radius: 100px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: .5rem;
+  }
+
+  .card-tools {
+    font-size: .78rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .card-link {
+    font-size: .78rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    transition: gap .2s;
+  }
+  .card-link:hover { gap: .6rem; }
+
+  /* ── TECH STACK ───────────────────────────────────── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .tech-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    transition: border-color .2s, transform .2s;
+  }
+
+  .tech-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .tech-icon {
+    font-size: 1.6rem;
+    margin-bottom: .5rem;
+    display: block;
+  }
+
+  .tech-name {
+    font-size: .78rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: .2rem;
+  }
+
+  .tech-cat {
+    font-size: .68rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── INCIDENT TIMELINE ────────────────────────────── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: .875rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.45rem;
+    top: 1.4rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: .3rem;
+  }
+
+  /* ── COMPETENCES BAR ──────────────────────────────── */
+  .competences-grid {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .comp-item { }
+
+  .comp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+    font-size: .875rem;
+  }
+
+  .comp-name { font-weight: 600; }
+  .comp-pct { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: var(--accent); }
+
+  .comp-bar {
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .comp-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    animation: growBar 1s .3s cubic-bezier(.4,0,.2,1) both;
+    transform-origin: left;
+  }
+
+  /* ── CODE BLOCK ───────────────────────────────────── */
+  .code-block {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .7rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .code-dots { display: flex; gap: 6px; }
+  .code-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #ffbd2e; }
+  .dot-g { background: #28c840; }
+
+  .code-lang {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    color: var(--text-muted);
+    letter-spacing: .08em;
+  }
+
+  .code-body {
+    padding: 1.4rem 1.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    line-height: 1.8;
+    color: #c9d1d9;
+    overflow-x: auto;
+  }
+
+  .kw { color: #ff7b72; }
+  .fn { color: #d2a8ff; }
+  .str { color: #a5d6ff; }
+  .cm { color: #8b949e; font-style: italic; }
+  .var { color: #ffa657; }
+
+  /* ── FOOTER ───────────────────────────────────────── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: .85rem;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* ── ANIMATIONS ───────────────────────────────────── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes growBar {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* ── DIVIDER ──────────────────────────────────────── */
+  .divider {
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 2rem;
+  }
+
+  /* ── TABLE ────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+    margin: 1.5rem 0;
+  }
+  th {
+    text-align: left;
+    padding: .8rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    color: var(--text-muted);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: .8rem 1rem;
+    border-bottom: 1px solid rgba(30,45,74,.5);
+    color: var(--text-dim);
+  }
+  tr:hover td { background: rgba(0,212,255,.025); }
+
+  /* ── ALERT BOX ────────────────────────────────────── */
+  .alert {
+    background: rgba(239,68,68,.08);
+    border: 1px solid rgba(239,68,68,.3);
+    border-left: 4px solid var(--red);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: .875rem;
+    color: var(--text-dim);
+  }
+
+  .alert-title {
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: .3rem;
+    font-size: .85rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+
+  .success {
+    background: rgba(16,185,129,.08);
+    border-color: rgba(16,185,129,.3);
+    border-left-color: var(--accent3);
+  }
+  .success .alert-title { color: var(--accent3); }
+
+  @media (max-width: 680px) {
+    .situations-grid { grid-template-columns: 1fr; }
+    .tech-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">$ portfolio-e5 --sisr</span>
+  <ul class="nav-links">
+    <li><a href="#situations">Situations</a></li>
+    <li><a href="#techstack">Tech Stack</a></li>
+    <li><a href="#incident">Incident</a></li>
+    <li><a href="#competences">Compétences</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge">🛡️ BTS SIO — Option SISR — Portfolio E5</div>
+    <h1>Technicien <span>Systèmes, Réseaux</span><br>& Support</h1>
+    <p class="hero-sub">
+      Apprenti au sein de la <strong>Fondation Saint Jean de Dieu</strong> —
+      Administration de l'infrastructure IT d'un établissement médico-social à échelle nationale.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Windows Server</span>
+      <span class="tag">Active Directory</span>
+      <span class="tag">Microsoft 365</span>
+      <span class="tag">Azure</span>
+      <span class="tag">WithSecure</span>
+      <span class="tag">GLPI</span>
+      <span class="tag">PowerShell</span>
+      <span class="tag">VPN IPsec</span>
+      <span class="tag">NTFS</span>
+      <span class="tag">Netvie/Netfactu</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SITUATIONS -->
+<section id="situations">
+  <div class="section-label">Référentiel E5</div>
+  <h2>Situations Professionnelles</h2>
+
+  <div class="situations-grid">
+
+    <!-- SP1 -->
+    <div class="card" style="--card-accent: #00d4ff;">
+      <div class="card-num">SP-01 · SISR1 / SISR4</div>
+      <h3>Migration Nationale Office 365 & Active Directory</h3>
+      <p>Industrialisation de la migration M365 et harmonisation de l'annuaire AD sur l'ensemble des établissements. Gain de 60–70 % sur le temps de provisionnement des comptes.</p>
+      <div class="card-skills">
+        <span class="skill-pill">SISR1</span>
+        <span class="skill-pill">SISR4</span>
+        <span class="skill-pill">B1.1</span>
+        <span class="skill-pill">B1.4</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-tools">AD · Azure AD Connect · PowerShell · GPO</span>
+        <a href="#sp1-detail" class="card-link">Détail →</a>
+      </div>
+    </div>
+
+    <!-- SP2 -->
+    <div class="card" style="--card-accent: #ef4444;">
+      <div class="card-num">SP-02 · SISR2 / SISR3</div>
+      <h3>Sécurité Réseau, VPN & Réponse à Incident</h3>
+      <p>Segmentation VLAN, administration des VPN inter-sites et gestion d'un incident réel de compromission d'un poste salarié détecté par WithSecure. Confinement en moins de 20 min.</p>
+      <div class="card-skills">
+        <span class="skill-pill">SISR2</span>
+        <span class="skill-pill">SISR3</span>
+        <span class="skill-pill">B2.2</span>
+        <span class="skill-pill">B2.3</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-tools">WithSecure · VLAN · IPsec · MITRE ATT&CK</span>
+        <a href="#incident" class="card-link">Détail →</a>
+      </div>
+    </div>
+
+    <!-- SP3 -->
+    <div class="card" style="--card-accent: #10b981;">
+      <div class="card-num">SP-03 · SISR1 / SISR5</div>
+      <h3>Automatisation PowerShell & Support N1/N2</h3>
+      <p>Création de scripts d'inventaire automatique et de montage de lecteurs réseau. Gestion du ticketing via GLPI avec SLA définis. Réduction de 80 % des tâches manuelles récurrentes.</p>
+      <div class="card-skills">
+        <span class="skill-pill">SISR1</span>
+        <span class="skill-pill">SISR5</span>
+        <span class="skill-pill">B1.5</span>
+        <span class="skill-pill">B2.1</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-tools">PowerShell · GLPI · WMI · GPO Logon</span>
+        <a href="#code-section" class="card-link">Scripts →</a>
+      </div>
+    </div>
+
+    <!-- SP4 -->
+    <div class="card" style="--card-accent: #7c3aed;">
+      <div class="card-num">SP-04 · SISR4 / SISR5</div>
+      <h3>Déploiement Applicatif Netvie / Netfactu</h3>
+      <p>Mise en place des applications de gestion comptable et médicale dans un contexte de conformité M14/M22. Déploiement standardisé reproductible sur chaque établissement.</p>
+      <div class="card-skills">
+        <span class="skill-pill">SISR4</span>
+        <span class="skill-pill">SISR5</span>
+        <span class="skill-pill">B1.4</span>
+        <span class="skill-pill">B1.6</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-tools">Netvie · Netfactu · SQL Server · CEGI</span>
+        <a href="#" class="card-link">Détail →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TECH STACK -->
+<section id="techstack">
+  <div class="section-label">Environnement Technique</div>
+  <h2>Stack Maîtrisé</h2>
+
+  <div class="tech-grid">
+    <div class="tech-item"><span class="tech-icon">🪟</span><span class="tech-name">Windows Server</span><span class="tech-cat">Système</span></div>
+    <div class="tech-item"><span class="tech-icon">🏢</span><span class="tech-name">Active Directory</span><span class="tech-cat">Annuaire</span></div>
+    <div class="tech-item"><span class="tech-icon">☁️</span><span class="tech-name">Microsoft 365</span><span class="tech-cat">Cloud</span></div>
+    <div class="tech-item"><span class="tech-icon">🔵</span><span class="tech-name">Azure / Entra ID</span><span class="tech-cat">Cloud IAM</span></div>
+    <div class="tech-item"><span class="tech-icon">🛡️</span><span class="tech-name">WithSecure</span><span class="tech-cat">Sécurité EDR</span></div>
+    <div class="tech-item"><span class="tech-icon">🎫</span><span class="tech-name">GLPI</span><span class="tech-cat">ITSM</span></div>
+    <div class="tech-item"><span class="tech-icon">⚡</span><span class="tech-name">PowerShell</span><span class="tech-cat">Scripting</span></div>
+    <div class="tech-item"><span class="tech-icon">🔒</span><span class="tech-name">VPN IPsec</span><span class="tech-cat">Réseau</span></div>
+    <div class="tech-item"><span class="tech-icon">📋</span><span class="tech-name">NTFS / GPO</span><span class="tech-cat">Droits</span></div>
+    <div class="tech-item"><span class="tech-icon">🏥</span><span class="tech-name">Netvie</span><span class="tech-cat">Métier Médical</span></div>
+    <div class="tech-item"><span class="tech-icon">💰</span><span class="tech-name">Netfactu</span><span class="tech-cat">Compta</span></div>
+    <div class="tech-item"><span class="tech-icon">⏱️</span><span class="tech-name">Octime / CEGI</span><span class="tech-cat">RH / Paie</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- INCIDENT TIMELINE -->
+<section id="incident">
+  <div class="section-label">SP-02 — Réponse à Incident</div>
+  <h2>Chronologie de l'Incident de Sécurité</h2>
+
+  <div class="alert">
+    <div class="alert-title">⚠️ Incident Critique — Poste Salarié Compromis</div>
+    Détection d'une macro VBA malveillante via <strong>WithSecure Elements</strong> — Vecteur : spear phishing (fichier .xlsm simulant une facture fournisseur).
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-time">J+0 · 09:14</div>
+      <strong>Alerte WithSecure</strong> — Détection comportementale : processus PowerShell encodé lancé depuis Outlook.exe
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">J+0 · 09:20</div>
+      <strong>Escalade SSI</strong> — Ouverture ticket GLPI priorité <span style="color:var(--red);font-weight:700;">CRITIQUE</span> — Notification du responsable infrastructure.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">J+0 · 09:25</div>
+      <strong>Isolation réseau immédiate</strong> — Désactivation du port switch + mise en quarantaine WithSecure. Le poste est hors réseau.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">J+0 · 09:30</div>
+      <strong>Investigation forensique</strong> — Sauvegarde RAM + logs Windows Event Log. Identification du fichier malveillant.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">J+0 · 11:30</div>
+      <strong>Remédiation</strong> — Désinfection + réinstallation OS depuis image Gold. Réinitialisation compte AD.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">J+1 · 09:00</div>
+      <strong>Rapport d'incident</strong> — Transmission à la Direction + notification CNIL (art. 33 RGPD). Recommandations préventives.
+    </div>
+  </div>
+
+  <div class="alert success" style="margin-top:2rem;">
+    <div class="alert-title">✅ Résultat — Incident Contenu</div>
+    Confinement en <strong>moins de 20 minutes</strong>. Aucune donnée patient compromise. Propagation latérale bloquée par la segmentation VLAN.
+  </div>
+
+  <h3 style="margin-top:2.5rem; margin-bottom:1rem; font-size:1rem;">Matrice MITRE ATT&CK</h3>
+  <table>
+    <thead><tr><th>Phase</th><th>Technique</th><th>Contre-mesure</th></tr></thead>
+    <tbody>
+      <tr><td><span style="color:var(--red)">Initial Access</span></td><td>Phishing T1566</td><td>Filtrage anti-spam Exchange Online + formation</td></tr>
+      <tr><td><span style="color:var(--yellow)">Execution</span></td><td>Macro Office T1203</td><td>GPO désactivation macros non signées</td></tr>
+      <tr><td><span style="color:var(--yellow)">Persistence</span></td><td>Clé Run T1547</td><td>Surveillance WithSecure temps réel</td></tr>
+      <tr><td><span style="color:var(--accent2)">Lateral Movement</span></td><td>Pass-the-Hash (tentative)</td><td>Isolation VLAN + désactivation compte AD</td></tr>
+      <tr><td><span style="color:var(--accent3)">Exfiltration</span></td><td>Bloquée</td><td>Pare-feu sortant + règles DLP M365</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="divider">
+
+<!-- CODE SECTION -->
+<section id="code-section">
+  <div class="section-label">SP-03 — Automatisation</div>
+  <h2>Scripts PowerShell</h2>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+      <span class="code-lang">POWERSHELL · Inventaire_Parc_SJDD.ps1</span>
+    </div>
+    <div class="code-body"><pre><span class="cm"># ── Export inventaire AD + WMI vers CSV ──────────────────</span>
+<span class="var">$computers</span> = <span class="fn">Get-ADComputer</span> <span class="kw">-Filter</span> <span class="str">*</span> <span class="kw">-Properties</span> <span class="str">*</span>
+<span class="var">$results</span>   = <span class="fn">@()</span>
+
+<span class="kw">foreach</span> (<span class="var">$pc</span> <span class="kw">in</span> <span class="var">$computers</span>) {
+    <span class="var">$os</span>  = <span class="fn">Get-WmiObject</span> Win32_OperatingSystem <span class="kw">-ComputerName</span> <span class="var">$pc.Name</span>
+    <span class="var">$ram</span> = [math]::<span class="fn">Round</span>(<span class="var">$os</span>.TotalVisibleMemorySize / 1MB, 2)
+
+    <span class="var">$results</span> += [PSCustomObject]@{
+        Nom           = <span class="var">$pc.Name</span>
+        OS            = <span class="var">$os.Caption</span>
+        RAM_Go        = <span class="var">$ram</span>
+        Etablissement = (<span class="var">$pc.DistinguishedName</span> <span class="kw">-split</span> <span class="str">',OU='</span>)[2]
+    }
+}
+
+<span class="var">$results</span> | <span class="fn">Export-Csv</span> <span class="str">"C:\Rapports\Inventaire_$(</span><span class="fn">Get-Date</span> -Format <span class="str">'yyyy-MM-dd'</span><span class="str">).csv"</span> <span class="kw">-Encoding</span> UTF8</pre></div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+      <span class="code-lang">POWERSHELL · Montage_Lecteurs.ps1 (GPO Logon Script)</span>
+    </div>
+    <div class="code-body"><pre><span class="cm"># ── Montage conditionnel selon groupe AD ─────────────────</span>
+<span class="var">$user</span>   = <span class="var">$env:USERNAME</span>
+<span class="var">$groups</span> = (<span class="fn">New-Object</span> DirectoryServices.DirectorySearcher(
+             <span class="str">"(&(sAMAccountName=$user))"</span>)).FindOne().Properties[<span class="str">'memberof'</span>]
+
+<span class="kw">if</span> (<span class="var">$groups</span> <span class="kw">-match</span> <span class="str">"GG_Soignants"</span>) {
+    <span class="fn">New-PSDrive</span> <span class="kw">-Name</span> <span class="str">"S"</span> <span class="kw">-PSProvider</span> FileSystem <span class="kw">-Persist</span> `
+        <span class="kw">-Root</span> <span class="str">"\\SRV-FICHIERS\Soins"</span>
+}
+
+<span class="kw">if</span> (<span class="var">$groups</span> <span class="kw">-match</span> <span class="str">"GG_Direction"</span>) {
+    <span class="fn">New-PSDrive</span> <span class="kw">-Name</span> <span class="str">"D"</span> <span class="kw">-PSProvider</span> FileSystem <span class="kw">-Persist</span> `
+        <span class="kw">-Root</span> <span class="str">"\\SRV-FICHIERS\Direction"</span>
+}
+
+<span class="fn">New-PSDrive</span> <span class="kw">-Name</span> <span class="str">"P"</span> <span class="kw">-PSProvider</span> FileSystem <span class="kw">-Persist</span> `
+    <span class="kw">-Root</span> <span class="str">"\\SRV-FICHIERS\Public"</span> <span class="cm"># Lecteur commun</span></pre></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPETENCES -->
+<section id="competences">
+  <div class="section-label">Bilan</div>
+  <h2>Compétences SISR Acquises</h2>
+
+  <div class="competences-grid">
+    <div class="comp-item">
+      <div class="comp-header">
+        <span class="comp-name">SISR1 — Gérer le patrimoine informatique</span>
+        <span class="comp-pct">SP1 / SP3</span>
+      </div>
+      <div class="comp-bar"><div class="comp-fill" style="width:90%"></div></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-header">
+        <span class="comp-name">SISR2 — Gérer les incidents et problèmes</span>
+        <span class="comp-pct">SP2</span>
+      </div>
+      <div class="comp-bar"><div class="comp-fill" style="width:85%"></div></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-header">
+        <span class="comp-name">SISR3 — Sécurité réseau</span>
+        <span class="comp-pct">SP2</span>
+      </div>
+      <div class="comp-bar"><div class="comp-fill" style="width:78%"></div></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-header">
+        <span class="comp-name">SISR4 — Travailler en mode projet</span>
+        <span class="comp-pct">SP1 / SP4</span>
+      </div>
+      <div class="comp-bar"><div class="comp-fill" style="width:80%"></div></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-header">
+        <span class="comp-name">SISR5 — Mise à disposition du service informatique</span>
+        <span class="comp-pct">SP3 / SP4</span>
+      </div>
+      <div class="comp-bar"><div class="comp-fill" style="width:88%"></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Portfolio E5 — BTS SIO SISR · <span>Fondation Saint Jean de Dieu</span><br>
+  <small style="color:var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size:.72rem;">
+    Apprenti Technicien Systèmes, Réseaux & Support · Tous droits réservés
+  </small></p>
+</footer>
+
+</body>
+</html>
